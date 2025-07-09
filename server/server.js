@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import projectRoutes from "./routes/projects.js";
+import projectRoutes from "./routes/project.js";
+import jobsRoutes from "./routes/jobs.js";
 
 dotenv.config();
 const app = express();
@@ -17,7 +18,8 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-app.use("/api/projects", projectRoutes);
+app.use("/project", projectRoutes);
+app.use("/jobs", jobsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Portfolio backend is running");

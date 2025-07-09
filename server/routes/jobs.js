@@ -1,5 +1,5 @@
 import express from 'express';
-import Job from '../models/Job.js';
+import Job from '../models/Jobs.js';
 
 const router = express.Router();
 
