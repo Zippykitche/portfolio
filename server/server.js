@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import projectRoutes from "./routes/project.js";
 import jobsRoutes from "./routes/jobs.js";
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ mongoose
 
 app.use("/project", projectRoutes);
 app.use("/jobs", jobsRoutes);
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Portfolio backend is running");
