@@ -5,11 +5,6 @@ import User from "../models/User.js";
 
 const router = express.Router();
 
-const ADMIN_USER = {
-  email: "zippyk80@gmail.com",
-  password: "Zipporah@2020", // store this hashed in production!
-};
-
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -25,5 +20,6 @@ router.post("/login", async (req, res) => {
 
   res.json({ token });
 });
+
 
 export default router;
