@@ -1,0 +1,132 @@
+.header {
+  background-color: black;
+  padding: 0.5rem 5rem;
+  top: 0;
+  z-index: 50;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 rgb(246, 119, 138),
+     1px -1px 0 rgb(246, 119, 138),
+    -1px  1px 0 rgb(246, 119, 138),
+     1px  1px 0 rgb(246, 119, 138);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  position: relative;
+  padding-bottom: 4px;
+  color: rgb(246, 119, 138);
+  text-decoration: none;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: rgb(246, 119, 138);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.hire-me {
+  background-color: rgb(246, 119, 138);
+  color: black;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hire-me:hover {
+  background-color: rgba(246, 119, 138, 0.557);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hamburger {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 0.5rem 5rem; 
+  }
+}
+ @media (max-width: 640px) {
+  .header {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hamburger {
+    display: block;
+    position: absolute;
+    left: 1rem;
+    color: rgb(246, 119, 138);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .logo {
+    margin: 0 auto;
+    color: black;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: black;
+    position: absolute;
+    top: 3.5rem; /* adjust based on header height */
+    left: 1rem;
+    width: auto;
+    padding: 1rem;
+    border: 1px solid rgb(246, 119, 138);
+    border-radius: 0.5rem;
+    z-index: 99;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
+
+
+

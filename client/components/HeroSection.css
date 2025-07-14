@@ -1,0 +1,143 @@
+.hero-section {
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 2rem;
+  max-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin-top: 3rem;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  width: 300px;
+  object-fit: cover;
+  /* filter: brightness(1.1); */
+  border-radius: 1rem;
+}
+
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-greeting {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.hero-name {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 0.5;
+  white-space: nowrap;
+  color: rgb(246, 119, 138);
+}
+
+.hero-title {
+  font-size: 1.125rem !important;
+  font-weight: 200;
+  margin-bottom: 0.1rem;
+  white-space: nowrap;
+}
+
+.highlight {
+  color: rgb(246, 119, 138) !important;
+}
+
+.hero-subtitle {
+  color: #d1d5db;
+  font-size: 1.125rem;
+  max-width: 36rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-action {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.hero-button {
+  background-color: rgb(246, 119, 138);
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: rgba(246, 119, 138, 0.557);
+}
+
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 5rem 6rem;
+  }
+  .hero-action {
+    align-items: flex-start; 
+    width: auto; 
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-image-container {
+    display: none;
+  }
+
+  .hero-text {
+    text-align: center;         
+    align-items: center;       
+    display: flex;              
+    flex-direction: column;
+  }
+
+  .hero-name {
+    font-size: 2.25rem; 
+    line-height: 1.2;            
+    white-space: normal;  
+          
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    white-space: normal;        
+  }
+
+  .hero-action {
+    align-items: center;        
+  }
+
+  .hero-contact-info {
+    flex-direction: row;
+  }
+}
+
