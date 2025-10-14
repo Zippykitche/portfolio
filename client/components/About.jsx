@@ -5,6 +5,7 @@ import {
   FaPython,
   FaGitAlt,
   FaFigma,
+  FaCode,
   FaBootstrap,
 } from "react-icons/fa";
 import {
@@ -13,9 +14,9 @@ import {
   SiNextdotjs,
   SiJavascript,
   SiPostgresql,
-  SiFirebase,
   SiExpress,
   SiFlask,
+  SiDotnet,
 } from "react-icons/si";
 
 
@@ -94,8 +95,12 @@ export default function About() {
       <span>PostgreSQL</span>
     </div>
     <div className="flex flex-col items-center text-center w-20">
-      <SiFirebase className="text-yellow-500 text-2xl mb-1" />
-      <span>Firebase</span>
+      <FaCode className="text-purple-700 text-2xl mb-1" />
+      <span>C#</span>
+    </div>
+    <div className="flex flex-col items-center text-center w-20">
+      <SiDotnet className="text-blue-500 text-2xl mb-1" />
+      <span>.NET</span>
     </div>
     <div className="flex flex-col items-center text-center w-20">
       <FaGitAlt className="text-red-500 text-2xl mb-1" />
