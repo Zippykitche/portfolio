@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FaFacebookF, FaFacebookMessenger, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaFacebookMessenger, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp, FaGithub } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 import LoginForm from "./LoginForm";
 import { Pacifico } from 'next/font/google';
@@ -42,6 +42,7 @@ export default function ContactSection() {
           <IconLink href="https://www.instagram.com/zipporah_kwa.mboka/"><FaInstagram /></IconLink>
           <IconLink href="https://www.linkedin.com/in/zipporah-kwamboka/"><FaLinkedinIn /></IconLink>
           <IconLink href="https://wa.me/+254757142737"><FaWhatsapp /></IconLink>
+          <IconLink href="https://github.com/Zippykitche"><FaGithub /></IconLink>
         </div>
       </div>
        {/* Show Login Button + Form */}

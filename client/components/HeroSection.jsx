@@ -13,7 +13,7 @@ export default function HeroSection() {
           <p className="hero-subtitle">I make the complex simple.</p>
           <div className="hero-action">
           <a
-  href="/files/Zipporah CV.pdf"
+  href="/files/ZipporahCV.pdf"
   target="_blank"
   rel="noopener noreferrer"
   className="hero-button flex items-center gap-2"
