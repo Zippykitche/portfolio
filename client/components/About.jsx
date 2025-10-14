@@ -5,7 +5,6 @@ import {
   FaPython,
   FaGitAlt,
   FaFigma,
-  FaCode,
   FaBootstrap,
 } from "react-icons/fa";
 import {
@@ -93,10 +92,6 @@ export default function About() {
     <div className="flex flex-col items-center text-center w-20">
       <SiPostgresql className="text-blue-700 text-2xl mb-1" />
       <span>PostgreSQL</span>
-    </div>
-    <div className="flex flex-col items-center text-center w-20">
-      <FaCode className="text-purple-700 text-2xl mb-1" />
-      <span>C#</span>
     </div>
     <div className="flex flex-col items-center text-center w-20">
       <SiDotnet className="text-blue-500 text-2xl mb-1" />
