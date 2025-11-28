@@ -6,12 +6,15 @@ import dotenv from "dotenv";
 import projectRoutes from "./routes/project.js";
 import jobsRoutes from "./routes/jobs.js";
 import authRoutes from "./routes/auth.js";
+import cvRoutes from "./routes/cv.js";
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+}));
 app.use(express.json());
 
 mongoose
@@ -22,6 +25,7 @@ mongoose
 app.use("/project", projectRoutes);
 app.use("/jobs", jobsRoutes);
 app.use("/auth", authRoutes);
+app.use("/", cvRoutes);
 
 app.get("/", (req, res) => {
   res.send("Portfolio backend is running");

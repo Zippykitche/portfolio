@@ -15,16 +15,4 @@ router.get("/", authenticateToken, async (req, res) => {
   res.json(jobs);
 });
 
-
-router.get('/', async (req, res) => {
-  const jobs = await Job.find().sort({ createdAt: -1 });
-  res.json(jobs);
-});
-
-router.post('/', async (req, res) => {
-  const job = new Job(req.body);
-  await job.save();
-  res.status(201).json(job);
-});
-
 export default router;
