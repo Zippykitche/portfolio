@@ -8,8 +8,10 @@ export default function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:5000/project");
+        const res = await fetch("https://portfolio-3oyr.onrender.com/project");
         const data = await res.json();
+        console.log("API response:", data);
+
         setProjects(data);
       } catch (err) {
         console.error("Failed to fetch projects:", err);

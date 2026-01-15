@@ -28,8 +28,12 @@ router.get("/", async (req, res) => {
     const projects = await Project.find();
     res.status(200).json(projects);
   } catch (err) {
-    console.error("Error fetching projects:", err);
-    res.status(500).json({ error: "Failed to fetch projects" });
+    console.error("❌ FETCH PROJECTS ERROR:", err.message);
+    console.error(err);
+    res.status(500).json({
+      error: err.message,
+      name: err.name,
+      });
   }
 });
 
