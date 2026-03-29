@@ -40,7 +40,7 @@ export default function AdminPanel() {
         setTimeout(() => router.push("/unauthorized"), 1500);
       });
 
-    const fetchProjects = fetch("http://localhost:5000/project", {
+    const fetchProjects = fetch("https://portfolio-3oyr.onrender.com/project", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -80,7 +80,7 @@ export default function AdminPanel() {
     });
     formData.append("link", projectData.link);
 
-    fetch("http://localhost:5000/project", {
+    fetch("https://portfolio-3oyr.onrender.com/project", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ export default function AdminPanel() {
         setProjectImage(null);
         // Refresh projects after adding a new one
         const token = localStorage.getItem("token");
-        fetch("http://localhost:5000/project", {
+        fetch("https://portfolio-3oyr.onrender.com/project", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -113,7 +113,7 @@ export default function AdminPanel() {
 
   const handleDeleteProject = (id) => {
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5000/project/${id}`, {
+    fetch(`https://portfolio-3oyr.onrender.com/project/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ export default function AdminPanel() {
     const formData = new FormData();
     formData.append("cv", cvFile);
 
-    fetch("http://localhost:5000/upload-cv", {
+    fetch("https://portfolio-3oyr.onrender.com/upload-cv", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
