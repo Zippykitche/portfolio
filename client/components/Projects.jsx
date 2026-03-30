@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 
+const API_BASE_URL = "https://portfolio-3oyr.onrender.com";
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://portfolio-3oyr.onrender.com/project");
+        const res = await fetch(`${API_BASE_URL}/project`);
         const data = await res.json();
         console.log("API response:", data);
 
@@ -28,33 +30,39 @@ export default function Projects() {
         <h3 className="text-2xl font-bold mb-5">Some projects I built</h3>
 
         <div className="grid md:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-[#1c1c1c] rounded-xl shadow-lg overflow-hidden hover:shadow-[0_0_10px_rgb(246,119,138)] transition-shadow duration-300"
-            >
-              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-              <div className="p-5">
-                <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
-                <p className="text-gray-400 mb-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2 text-sm text-[rgb(246,119,138)] mb-4">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="bg-[#2a2a2a] px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
+          {projects.map((project, index) => {
+            const imageUrl = project.image.startsWith("/images/") 
+              ? `${API_BASE_URL}${project.image}` 
+              : project.image;
+            
+            return (
+              <div
+                key={index}
+                className="bg-[#1c1c1c] rounded-xl shadow-lg overflow-hidden hover:shadow-[0_0_10px_rgb(246,119,138)] transition-shadow duration-300"
+              >
+                <img src={imageUrl} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="p-5">
+                  <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
+                  <p className="text-gray-400 mb-3">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 text-sm text-[rgb(246,119,138)] mb-4">
+                    {project.tech.map((tech, i) => (
+                      <span key={i} className="bg-[#2a2a2a] px-2 py-1 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white font-medium underline hover:text-[rgb(246,119,138)]"
+                  >
+                    View Project →
+                  </a>
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white font-medium underline hover:text-[rgb(246,119,138)]"
-                >
-                  View Project →
-                </a>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

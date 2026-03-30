@@ -1,5 +1,7 @@
 import "./HeroSection.css";
 
+const API_BASE_URL = "https://portfolio-3oyr.onrender.com";
+
 export default function HeroSection() {
   return (
     <section id="hero" className="hero-section relative">
@@ -13,7 +15,7 @@ export default function HeroSection() {
           <p className="hero-subtitle">I make the complex simple.</p>
           <div className="hero-action">
           <a
-  href="/files/ZipporahCV.pdf"
+  href={`${API_BASE_URL}/files/ZipporahCV.pdf`}
   target="_blank"
   rel="noopener noreferrer"
   className="hero-button flex items-center gap-2"

@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+const API_BASE_URL = "https://portfolio-3oyr.onrender.com";
+
 export default function AdminPanel() {
   const [jobs, setJobs] = useState([]);
   const [projects, setProjects] = useState([]); // New state for projects
@@ -24,7 +26,7 @@ export default function AdminPanel() {
       return;
     }
 
-    const fetchJobs = fetch("https://portfolio-3oyr.onrender.com/jobs", {
+    const fetchJobs = fetch(`${API_BASE_URL}/jobs`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -40,7 +42,7 @@ export default function AdminPanel() {
         setTimeout(() => router.push("/unauthorized"), 1500);
       });
 
-    const fetchProjects = fetch("https://portfolio-3oyr.onrender.com/project", {
+    const fetchProjects = fetch(`${API_BASE_URL}/project`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -80,7 +82,7 @@ export default function AdminPanel() {
     });
     formData.append("link", projectData.link);
 
-    fetch("https://portfolio-3oyr.onrender.com/project", {
+    fetch(`${API_BASE_URL}/project`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -90,7 +92,6 @@ export default function AdminPanel() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Project added:", data);
-        // Optionally, refresh the projects list or give feedback
         setProjectData({
           title: "",
           description: "",
@@ -99,8 +100,7 @@ export default function AdminPanel() {
         });
         setProjectImage(null);
         // Refresh projects after adding a new one
-        const token = localStorage.getItem("token");
-        fetch("https://portfolio-3oyr.onrender.com/project", {
+        fetch(`${API_BASE_URL}/project`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -113,7 +113,7 @@ export default function AdminPanel() {
 
   const handleDeleteProject = (id) => {
     const token = localStorage.getItem("token");
-    fetch(`https://portfolio-3oyr.onrender.com/project/${id}`, {
+    fetch(`${API_BASE_URL}/project/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ export default function AdminPanel() {
     const formData = new FormData();
     formData.append("cv", cvFile);
 
-    fetch("https://portfolio-3oyr.onrender.com/upload-cv", {
+    fetch(`${API_BASE_URL}/upload-cv`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -146,7 +146,6 @@ export default function AdminPanel() {
       .then((res) => res.json())
       .then((data) => {
         console.log("CV uploaded:", data);
-        // Give feedback
       })
       .catch((err) => console.error("Error uploading CV:", err));
   };
@@ -171,19 +170,19 @@ export default function AdminPanel() {
       <div className="mb-8">
         <h3 className="text-2xl font-bold mb-4">Add New Project</h3>
         <form onSubmit={handleProjectSubmit} className="space-y-4">
-           <input
-              type="file"
-              id="image"
-              name="image"
-              onChange={handleProjectImageChange}
-              className="hidden"
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleProjectImageChange}
+            className="hidden"
           />
-      <label
-        htmlFor="image"
-        className="w-full p-2 rounded bg-white border border-black-400 cursor-pointer text-gray-400"
-      >
-        {projectImage ? projectImage.name : "Upload Image"}
-      </label>
+          <label
+            htmlFor="image"
+            className="w-full p-2 rounded bg-white border border-black-400 cursor-pointer text-gray-400 block"
+          >
+            {projectImage ? projectImage.name : "Upload Image"}
+          </label>
           <input
             type="text"
             name="title"
@@ -191,13 +190,6 @@ export default function AdminPanel() {
             value={projectData.title}
             onChange={handleProjectChange}
             className="w-full p-2 rounded bg-white text-black border border-black-400"
-          />
-          <input
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleProjectImageChange}
-            className="hidden"
           />
           <textarea
             name="description"
@@ -253,31 +245,42 @@ export default function AdminPanel() {
       <div className="mb-8">
         <h3 className="text-2xl font-bold mb-4">Existing Projects</h3>
         <div className="grid gap-4">
-          {projects.map((project) => (
-            <div
-              key={project._id}
-              className="border border-pink-400 p-4 rounded bg-[#1c1c1c] flex justify-between items-center"
-            >
-              <div>
-                <h4 className="text-xl font-semibold">{project.title}</h4>
-                <p>{project.description}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-blue-400 hover:underline"
-                >
-                  View Project
-                </a>
-              </div>
-              <button
-                onClick={() => handleDeleteProject(project._id)}
-                className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+          {projects.map((project) => {
+            const imageUrl = project.image.startsWith("/images/") 
+              ? `${API_BASE_URL}${project.image}` 
+              : project.image;
+
+            return (
+              <div
+                key={project._id}
+                className="border border-pink-400 p-4 rounded bg-[#1c1c1c] flex justify-between items-center"
               >
-                Delete
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center space-x-4">
+                  {project.image && (
+                    <img src={imageUrl} alt={project.title} className="w-16 h-16 object-cover rounded" />
+                  )}
+                  <div>
+                    <h4 className="text-xl font-semibold">{project.title}</h4>
+                    <p>{project.description}</p>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-400 hover:underline"
+                    >
+                      View Project
+                    </a>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleDeleteProject(project._id)}
+                  className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
