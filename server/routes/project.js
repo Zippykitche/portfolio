@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 // Set up storage for multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dest = path.resolve(process.cwd(), "../client/public/images");
+    const dest = path.resolve(process.cwd(), "public/images");
     cb(null, dest);
   },
   filename: function (req, file, cb) {

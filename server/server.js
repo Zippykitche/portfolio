@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 import projectRoutes from "./routes/project.js";
 import jobsRoutes from "./routes/jobs.js";
@@ -16,6 +17,8 @@ app.use(cors({
   origin: "*",
 }));
 app.use(express.json());
+app.use("/images", express.static(path.join(process.cwd(), "public/images")));
+app.use("/files", express.static(path.join(process.cwd(), "public/files")));
 
 mongoose
   .connect(process.env.MONGO_URI)
