@@ -3,11 +3,15 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import projectRoutes from "./routes/project.js";
 import jobsRoutes from "./routes/jobs.js";
 import authRoutes from "./routes/auth.js";
 import cvRoutes from "./routes/cv.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
@@ -17,8 +21,8 @@ app.use(cors({
   origin: "*",
 }));
 app.use(express.json());
-app.use("/images", express.static(path.join(process.cwd(), "public/images")));
-app.use("/files", express.static(path.join(process.cwd(), "public/files")));
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/files", express.static(path.join(__dirname, "public/files")));
 
 mongoose
   .connect(process.env.MONGO_URI)

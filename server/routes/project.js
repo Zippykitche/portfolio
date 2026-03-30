@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 // Set up storage for multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dest = path.resolve(process.cwd(), "public/images");
+    const dest = path.join(__dirname, "../public/images");
     cb(null, dest);
   },
   filename: function (req, file, cb) {
@@ -25,7 +25,7 @@ const upload = multer({ storage: storage });
 
 router.get("/", async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ createdAt: -1 });
     res.status(200).json(projects);
   } catch (err) {
     console.error("Error fetching projects:", err);

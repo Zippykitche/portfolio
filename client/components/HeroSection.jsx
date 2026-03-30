@@ -15,7 +15,7 @@ export default function HeroSection() {
           <p className="hero-subtitle">I make the complex simple.</p>
           <div className="hero-action">
           <a
-  href={`${API_BASE_URL}/files/ZipporahCV.pdf`}
+  href={`${API_BASE_URL}/files/ZipporahCV.pdf?v=${Date.now()}`}
   target="_blank"
   rel="noopener noreferrer"
   className="hero-button flex items-center gap-2"

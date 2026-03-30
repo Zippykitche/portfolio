@@ -6,6 +6,6 @@ const projectSchema = new mongoose.Schema({
   description: String,
   tech: [String],
   link: String,
-});
+}, { timestamps: true });
 
 export default mongoose.models.Project || mongoose.model("Project", projectSchema);
